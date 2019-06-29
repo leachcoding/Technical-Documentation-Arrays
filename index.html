@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Arrays - Technical Documentation | Jay Leach</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <nav id="navbar">
+      <header>JavaScript Arrays</header>
+      <ul>
+        <li><a class="nav-link" href="#introduction">Introduction</a></li>
+        <li><a class="nav-link" href="#PROPERTIES_-_ARRAY.LENGTH">Properties - array.length</a></li>
+        <li><a class="nav-link" href="#PROPERTIES_-_ARRAY.PROTOTYPE">Properties - array.prototype</a></li>
+        <li><a class="nav-link" href="#PROPERTIES_-_ARRAY.PROTOTYPE[@@UNSCOPABLES]">Properties - array.prototype[@@unscopables]</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.FROM()">Methods - array.from()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.ISARRAY()">Methods - array.isArray()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.OF()">Methods - array.of()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.CONCAT()">Methods - array.prototype.concat()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.COPYWITHIN()">Methods - array.prototype.copyWithin()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.ENTRIES()">Methods - array.prototype.entries()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.EVERY()">Methods - array.prototype.every()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.FILL()">Methods - array.prototype.fill()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.FILTER()">Methods - array.prototype.filter()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.FIND()">Methods - array.prototype.find()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.FINDINDEX()">Methods - array.prototype.findIndex()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.FLAT()">Methods - array.prototype.flat()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.FLATMAP()">Methods - array.prototype.flatMap()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.FOREACH()">Methods - array.prototype.forEach()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.INCLUDES()">Methods - array.prototype.includes()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.INDEXOF()">Methods - array.prototype.indexOf()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.JOIN()">Methods - array.prototype.join()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.KEYS()">Methods - array.prototype.keys()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.LASTINDEXOF()">Methods - array.prototype.lastIndexOf()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.MAP()">Methods - array.prototype.map()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.POP()">Methods - array.prototype.pop()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.PUSH()">Methods - array.prototype.push()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.REDUCE()">Methods - array.prototype.reduce()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.REDUCERIGHT()">Methods - array.prototype.reduceRight()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.REVERSE()">Methods - array.prototype.reverse()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.SHIFT()">Methods - array.prototype.shift()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.SLICE()">Methods - array.prototype.slice()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.SOME()">Methods - array.prototype.some()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.SORT()">Methods - array.prototype.sort()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.SPLICE()">Methods - array.prototype.splice()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.TOLOCALESTRING()">Methods - array.prototype.toLocaleString()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.TOSOURCE()">Methods - array.prototype.toSource()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.TOSTRING()">Methods - array.prototype.toString()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.UNSHIFT()">Methods - array.prototype.unshift()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE.VALUES()">Methods - array.prototype.values()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE[@@ITERATOR]()">Methods - array.prototype[@@iterator]()</a></li>
+        <li><a class="nav-link" href="#METHODS_-_ARRAY.PROTOTYPE[@@SPECIES]">Methods - array.prototype[@@species]</a></li>
+        <li><a class="nav-link" href="#Reference">Reference</a></li>
+      </ul>
+    </nav>
+
+    <main id="main-doc">
+      <section class="main-section" id="introduction">
+        <header>Introduction</header>
+        <article>
+          <p>The JavaScript Array object is a global object that is used to construct arrays; which are high-level, list-like objects.</p>
+          <p>Arrays are list-like objects whose prototype has methods to perform traversal and mutation operations. Neither the length of a JavaScript array nor the types of its elements are fixed. Since an array's length can change at any time, and data can be stored at non-contiguous locations in the array, JavaScript arrays are not guaranteed to be dense; this depends on how the programmer chooses to use them. In general, these are convenient characteristics; but if these features are not desirable for your particular use, you might consider using typed arrays.</p>
+          <p>Arrays cannot use strings as element indexes (as in an associative array) but must use integers. Setting or accessing via non-integers using bracket notation (or dot notation) will not set or retrieve an element from the array list itself, but will set or access a variable associated with that array's object property collection. The array's object properties and list of array elements are separate, and the array's traversal and mutation operations cannot be applied to these named properties.</p>
+        </article>
+      </section>
+
+      <section class="main-section" id="PROPERTIES_-_ARRAY.LENGTH">
+        <header>Properties - array.length</header>
+        <article>
+          <p>The length property of an object which is an instance of type Array sets or returns the number of elements in that array. The value is an unsigned, 32-bit integer that is always numerically greater than the highest index in the array.</p>
+          <code>var clothing = ['shoes', 'shirts', 'socks', 'sweaters'];
+                console.log(clothing.length);
+                // expected output: 4
+          </code>
+          <p><b>Iterating over an array:</b></p>
+          <code>var numbers = [1, 2, 3, 4, 5];
+                var length = numbers.length;
+                for (var i = 0; i &lt; length; i++) {
+                numbers[i] *= 2;
+                }
+                // numbers is now [2, 4, 6, 8, 10]
+          </code>
+          <p><b>Shortening an array:</b></p>
+          <code>var numbers = [1, 2, 3, 4, 5];
+                if (numbers.length &gt; 3) {
+                numbers.length = 3;
+                }
+                console.log(numbers); // [1, 2, 3]
+                console.log(numbers.length); // 3
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="PROPERTIES_-_ARRAY.PROTOTYPE">
+        <header>Properties - array.prototype</header>
+        <article>
+          <p>Array instances inherit from Array.prototype. As with all constructors, you can change the constructor's prototype object to make changes to all Array instances. For example, you can add new methods and properties to extend all Array objects. This is used for polyfilling, for example.</p>
+
+          <p>However, adding non-standard methods to the array object can cause issues later, either with your own code, or when adding features to JavaScript.</p>
+
+          <p>Little known fact: Array.prototype itself is an Array:</p>
+          <code>Array.isArray(Array.prototype); // true</code>
+        </article>
+      </section>
+
+      <section class="main-section" id="PROPERTIES_-_ARRAY.PROTOTYPE[@@UNSCOPABLES]">
+        <header>Properties - array.prototype[@@unscopables]</header>
+        <article>
+          <p>The @@unscopable symbol property contains property names that were not included in the ECMAScript standard prior to the ES2015 version. These properties are excluded from with statement bindings.</p>
+          <code>arr[Symbol.unscopables]</code>
+          <p>The following code works fine in ES5 and below. However, in ECMAScript 2015 and later, the Array.prototype.keys() method was introduced. That means that inside with environments, "keys" would now be the method and not the variable. This is where now the built-in @@unscopables Array.prototype[@@unscopables] symbol property comes into play and prevents that some of the Array methods are being scoped into the with statement.</p>
+          <code>var keys = [];
+                with (Array.prototype) {
+                  keys.push('something');
+                }
+                Object.keys(Array.prototype[Symbol.unscopables]);
+                // ["copyWithin", "entries", "fill", "find", "findIndex",
+                //  "includes", "keys", "values"]
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.FROM()">
+        <header>Methods - array.from()</header>
+        <article>
+          <p>The Array.from() method creates a new, shallow-copied Array instance from an array-like or iterable object.</p>
+          <code>console.log(Array.from('foo'));
+                // expected output: Array ["f", "o", "o"]
+
+                console.log(Array.from([1, 2, 3], x =&gt; x + x));
+                // expected output: Array [2, 4, 6]
+          </code>
+          <p><b>Array from a String</b></p>
+          <code>Array.from('foo');
+                // [ "f", "o", "o" ]
+          </code>
+          <p><b>Array from a Set</b></p>
+          <code>const set = new Set(['foo', 'bar', 'baz', 'foo']);
+                Array.from(set);
+                // [ "foo", "bar", "baz" ]
+          </code>
+          <p><b>Array from a Map</b></p>
+          <code>const map = new Map([[1, 2], [2, 4], [4, 8]]);
+                Array.from(map);
+                // [[1, 2], [2, 4], [4, 8]]
+
+                const mapper = new Map([['1', 'a'], ['2', 'b']]);
+                Array.from(mapper.values());
+                // ['a', 'b'];
+
+                Array.from(mapper.keys());
+                // ['1', '2'];
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.ISARRAY()">
+        <header>Methods - array.isArray()</header>
+        <article>
+          <p>The Array.isArray() method determines whether the passed value is an Array.</p>
+          <code>Array.isArray([1, 2, 3]);  // true
+                Array.isArray({foo: 123}); // false
+                Array.isArray('foobar');   // false
+                Array.isArray(undefined);  // false
+          </code>
+          <p><b>Examples</b></p>
+          <code>// all following calls return true
+                Array.isArray([]);
+                Array.isArray([1]);
+                Array.isArray(new Array());
+                Array.isArray(new Array('a', 'b', 'c', 'd'));
+                Array.isArray(new Array(3));
+                // Little known fact: Array.prototype itself is an array:
+                Array.isArray(Array.prototype);
+
+                // all following calls return false
+                Array.isArray();
+                Array.isArray({});
+                Array.isArray(null);
+                Array.isArray(undefined);
+                Array.isArray(17);
+                Array.isArray('Array');
+                Array.isArray(true);
+                Array.isArray(false);
+                Array.isArray(new Uint8Array(32));
+                Array.isArray({ __proto__: Array.prototype });
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.OF()">
+        <header>Methods - array.of()</header>
+        <article>
+          <p>The Array.of() method creates a new Array instance from a variable number of arguments, regardless of number or type of the arguments. The difference between Array.of() and the Array constructor is in the handling of integer arguments: Array.of(7) creates an array with a single element, 7, whereas Array(7) creates an empty array with a length property of 7 (Note: this implies an array of 7 empty slots, not slots with actual undefined values).</p>
+          <code>Array.of(7);       // [7]
+                Array.of(1, 2, 3); // [1, 2, 3]
+
+                Array(7);          // [ , , , , , , ]
+                Array(1, 2, 3);    // [1, 2, 3]
+          </code>
+          <p><b>Examples</b></p>
+          <code>Array.of(1);         // [1]
+                Array.of(1, 2, 3);   // [1, 2, 3]
+                Array.of(undefined); // [undefined]
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.CONCAT()">
+        <header>Methods - array.prototype.concat()</header>
+        <article>
+          <p>The concat() method is used to merge two or more arrays. This method does not change the existing arrays, but instead returns a new array.</p>
+          <code>var array1 = ['a', 'b', 'c'];
+                var array2 = ['d', 'e', 'f'];
+
+                console.log(array1.concat(array2));
+                // expected output: Array ["a", "b", "c", "d", "e", "f"]
+          </code>
+          <p><b>Concatenating two arrays</b></p>
+          <code>const letters = ['a', 'b', 'c'];
+                const numbers = [1, 2, 3];
+
+                letters.concat(numbers);
+                // result in ['a', 'b', 'c', 1, 2, 3]
+          </code>
+          <p><b>Concatenating three arrays</b></p>
+          <code>const num1 = [1, 2, 3];
+                const num2 = [4, 5, 6];
+                const num3 = [7, 8, 9];
+
+                const numbers = num1.concat(num2, num3);
+
+                console.log(numbers);
+                // results in [1, 2, 3, 4, 5, 6, 7, 8, 9]
+          </code>
+          <p><b>Concatenating values to an array</b></p>
+          <code>const letters = ['a', 'b', 'c'];
+
+                const alphaNumeric = letters.concat(1, [2, 3]);
+
+                console.log(alphaNumeric);
+                // results in ['a', 'b', 'c', 1, 2, 3]
+          </code>
+          <p><b>Concatenating nested arrays</b></p>
+          <code>const num1 = [[1]];
+                const num2 = [2, [3]];
+
+                const numbers = num1.concat(num2);
+
+                console.log(numbers);
+                // results in [[1], 2, [3]]
+
+                // modify the first element of num1
+                num1[0].push(4);
+
+                console.log(numbers);
+                // results in [[1, 4], 2, [3]]
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.COPYWITHIN()">
+        <header>Methods - array.prototype.copyWithin()</header>
+        <article>
+          <p>The copyWithin() method shallow copies part of an array to another location in the same array and returns it without modifying its length.</p>
+          <code>var array1 = ['a', 'b', 'c', 'd', 'e'];
+
+                // copy to index 0 the element at index 3
+                console.log(array1.copyWithin(0, 3, 4));
+                // expected output: Array ["d", "b", "c", "d", "e"]
+
+                // copy to index 1 all elements from index 3 to the end
+                console.log(array1.copyWithin(1, 3));
+                // expected output: Array ["d", "d", "e", "d", "e"]
+          </code>
+          <p><b>Examples</b></p>
+          <code>[1, 2, 3, 4, 5].copyWithin(-2);
+                // [1, 2, 3, 1, 2]
+
+                [1, 2, 3, 4, 5].copyWithin(0, 3);
+                // [4, 5, 3, 4, 5]
+
+                [1, 2, 3, 4, 5].copyWithin(0, 3, 4);
+                // [4, 2, 3, 4, 5]
+
+                [1, 2, 3, 4, 5].copyWithin(-2, -3, -1);
+                // [1, 2, 3, 3, 4]
+
+                [].copyWithin.call({length: 5, 3: 1}, 0, 3);
+                // {0: 1, 3: 1, length: 5}
+
+                // ES2015 Typed Arrays are subclasses of Array
+                var i32a = new Int32Array([1, 2, 3, 4, 5]);
+
+                i32a.copyWithin(0, 2);
+                // Int32Array [3, 4, 5, 4, 5]
+
+                // On platforms that are not yet ES2015 compliant:
+                [].copyWithin.call(new Int32Array([1, 2, 3, 4, 5]), 0, 3, 4);
+                // Int32Array [4, 2, 3, 4, 5]
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.ENTRIES()">
+        <header>Methods - array.prototype.entries()</header>
+        <article>
+          <p>The entries() method returns a new Array Iterator object that contains the key/value pairs for each index in the array.</p>
+          <code>var array1 = ['a', 'b', 'c'];
+
+                var iterator1 = array1.entries();
+
+                console.log(iterator1.next().value);
+                // expected output: Array [0, "a"]
+
+                console.log(iterator1.next().value);
+                // expected output: Array [1, "b"]
+          </code>
+          <p><b>Iterating with index and element</b></p>
+          <code>const a = ['a', 'b', 'c'];
+
+                for (const [index, element] of a.entries())
+                  console.log(index, element);
+
+                // 0 'a'
+                // 1 'b'
+                // 2 'c'
+          </code>
+          <p><b>Using a for…of loop</b></p>
+          <code>var a = ['a', 'b', 'c'];
+                var iterator = a.entries();
+
+                for (let e of iterator) {
+                  console.log(e);
+                }
+                // [0, 'a']
+                // [1, 'b']
+                // [2, 'c']
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.EVERY()">
+        <header>Methods - array.prototype.every()</header>
+
+        <article>
+          <p>The every() method tests whether all elements in the array pass the test implemented by the provided function. It returns a Boolean value. </p>
+          <code>function isBelowThreshold(currentValue) {
+                return currentValue &lt; 40;
+                }
+
+                var array1 = [1, 30, 39, 29, 10, 13];
+
+                console.log(array1.every(isBelowThreshold));
+                // expected output: true
+          </code>
+          <p><b>Testing size of all array elements</b></p>
+          <code>function isBigEnough(element, index, array) {
+                return element &gt;= 10;
+                }
+                [12, 5, 8, 130, 44].every(isBigEnough);   // false
+                [12, 54, 18, 130, 44].every(isBigEnough); // true
+          </code>
+          <p><b>Using arrow functions</b></p>
+          <code>[12, 5, 8, 130, 44].every(x =&gt; x &gt;= 10); // false
+                [12, 54, 18, 130, 44].every(x =&gt; x &gt;= 10); // true
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.FILL()">
+        <header>Methods - array.prototype.fill()</header>
+        <article>
+          <p>The fill() method fills (modifies) all the elements of an array from a start index (default zero) to an end index (default array length) with a static value. It returns the modified array.</p>
+          <code>var array1 = [1, 2, 3, 4];
+
+                // fill with 0 from position 2 until position 4
+                console.log(array1.fill(0, 2, 4));
+                // expected output: [1, 2, 0, 0]
+
+                // fill with 5 from position 1
+                console.log(array1.fill(5, 1));
+                // expected output: [1, 5, 5, 5]
+
+                console.log(array1.fill(6));
+                // expected output: [6, 6, 6, 6]
+          </code>
+          <p><b>Examples</b></p>
+          <code>[1, 2, 3].fill(4);               // [4, 4, 4]
+                [1, 2, 3].fill(4, 1);            // [1, 4, 4]
+                [1, 2, 3].fill(4, 1, 2);         // [1, 4, 3]
+                [1, 2, 3].fill(4, 1, 1);         // [1, 2, 3]
+                [1, 2, 3].fill(4, 3, 3);         // [1, 2, 3]
+                [1, 2, 3].fill(4, -3, -2);       // [4, 2, 3]
+                [1, 2, 3].fill(4, NaN, NaN);     // [1, 2, 3]
+                [1, 2, 3].fill(4, 3, 5);         // [1, 2, 3]
+                Array(3).fill(4);                // [4, 4, 4]
+                [].fill.call({ length: 3 }, 4);  // {0: 4, 1: 4, 2: 4, length: 3}
+
+                // Objects by reference.
+                var arr = Array(3).fill({}) // [{}, {}, {}];
+                arr[0].hi = "hi"; // [{ hi: "hi" }, { hi: "hi" }, { hi: "hi" }]
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.FILTER()">
+        <header>Methods - array.prototype.filter()</header>
+        <article>
+          <p>The filter() method creates a new array with all elements that pass the test implemented by the provided function.</p>
+          <code>var words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+
+                const result = words.filter(word =&gt; word.length &gt; 6);
+
+                console.log(result);
+                // expected output: Array ["exuberant", "destruction", "present"]
+          </code>
+          <p><b>Filtering out all small values</b></p>
+          <code>function isBigEnough(value) {
+                  return value &gt;= 10;
+                }
+
+                var filtered = [12, 5, 8, 130, 44].filter(isBigEnough);
+                // filtered is [12, 130, 44]
+          </code>
+          <p><b>Filtering invalid entries from JSON</b></p>
+          <code>var arr = [
+                { id: 15 },
+                { id: -1 },
+                { id: 0 },
+                { id: 3 },
+                { id: 12.2 },
+                { },
+                { id: null },
+                { id: NaN },
+                { id: 'undefined' }
+              ];
+
+              var invalidEntries = 0;
+
+              function isNumber(obj) {
+                return obj !== undefined && typeof(obj) === 'number' && !isNaN(obj);
+              }
+
+              function filterByID(item) {
+                if (isNumber(item.id) && item.id !== 0) {
+                  return true;
+                }
+                invalidEntries++;
+                return false;
+              }
+
+              var arrByID = arr.filter(filterByID);
+
+              console.log('Filtered Array\n', arrByID);
+              // Filtered Array
+              // [{ id: 15 }, { id: -1 }, { id: 3 }, { id: 12.2 }]
+
+              console.log('Number of Invalid Entries = ', invalidEntries);
+              // Number of Invalid Entries = 5
+          </code>
+          <p><b>Searching in array</b></p>
+          <code>var fruits = ['apple', 'banana', 'grapes', 'mango', 'orange'];
+
+                /**
+                 * Filter array items based on search criteria (query)
+                 */
+                function filterItems(arr, query) {
+                  return arr.filter(function(el) {
+                      return el.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+                  })
+                }
+
+                console.log(filterItems(fruits, 'ap')); // ['apple', 'grapes']
+                console.log(filterItems(fruits, 'an')); // ['banana', 'mango', 'orange']
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.FIND()">
+        <header>Methods - array.prototype.find()</header>
+        <article>
+          <p>The find() method returns the value of the first element in the array that satisfies the provided testing function. Otherwise undefined is returned.</p>
+          <code>var array1 = [5, 12, 8, 130, 44];
+
+                var found = array1.find(function(element) {
+                  return element &gt; 10;
+                });
+
+                console.log(found);
+                // expected output: 12
+          </code>
+          <p><b>Find an object in an array by one of its properties</b></p>
+          <code>const inventory = [
+                    {name: 'apples', quantity: 2},
+                    {name: 'bananas', quantity: 0},
+                    {name: 'cherries', quantity: 5}
+                ];
+
+                function isCherries(fruit) {
+                    return fruit.name === 'cherries';
+                }
+
+                console.log(inventory.find(isCherries));
+                // { name: 'cherries', quantity: 5 }
+          </code>
+          <p><b>Find a prime number in an array</b></p>
+          <code>function isPrime(element, index, array) {
+                let start = 2;
+                while (start &lt;= Math.sqrt(element)) {
+                  if (element % start++ &lt; 1) {
+                    return false;
+                  }
+                }
+                return element &gt; 1;
+              }
+
+              console.log([4, 6, 8, 12].find(isPrime)); // undefined, not found
+              console.log([4, 5, 8, 12].find(isPrime)); // 5
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.FINDINDEX()">
+        <header>Methods - array.prototype.findIndex()</header>
+        <article>
+          <p>The findIndex() method returns the index of the first element in the array that satisfies the provided testing function. Otherwise, it returns -1, indicating that no element passed the test.</p>
+          <code>var array1 = [5, 12, 8, 130, 44];
+
+                function isLargeNumber(element) {
+                  return element &gt; 13;
+                }
+
+                console.log(array1.findIndex(isLargeNumber));
+                // expected output: 3
+          </code>
+          <p><b>Find the index of a prime number in an array</b></p>
+          <code>number, or -1 if there is no prime number.
+
+                function isPrime(element, index, array) {
+                  var start = 2;
+                  while (start &lt;= Math.sqrt(element)) {
+                    if (element % start &lt; 1) {
+                      return false;
+                    } else {
+                      start++;
+                    }
+                  }
+                  return element &gt; 2;
+                }
+
+                console.log([4, 6, 8, 12].findIndex(isPrime)); // -1, not found
+                console.log([4, 6, 7, 12].findIndex(isPrime)); // 2 (array[2] is 7)
+          </code>
+          <p><b>Find index using arrow function</b></p>
+          <code>const fruits = ["apple", "banana", "cantaloupe", "blueberries", "grapefruit"];
+
+                const index = fruits.findIndex(fruit =&gt; fruit === "blueberries");
+
+                console.log(index); // 3
+                console.log(fruits[index]); // blueberries
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.FLAT()">
+        <header>Methods - array.prototype.flat()</header>
+        <article>
+          <p>The flat() method creates a new array with all sub-array elements concatenated into it recursively up to the specified depth.</p>
+          <p><b>Flattening nested arrays</b></p>
+          <code>var arr1 = [1, 2, [3, 4]];
+                arr1.flat();
+                // [1, 2, 3, 4]
+
+                var arr2 = [1, 2, [3, 4, [5, 6]]];
+                arr2.flat();
+                // [1, 2, 3, 4, [5, 6]]
+
+                var arr3 = [1, 2, [3, 4, [5, 6]]];
+                arr3.flat(2);
+                // [1, 2, 3, 4, 5, 6]
+          </code>
+          <p><b>Flattening and array holes</b></p>
+          <code>var arr4 = [1, 2, , 4, 5];
+                arr4.flat();
+                // [1, 2, 4, 5]
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.FLATMAP()">
+        <header>Methods - array.prototype.flatMap()</header>
+        <article>
+          <p>The flatMap() method first maps each element using a mapping function, then flattens the result into a new array. It is identical to a map() followed by a flat() of depth 1, but flatMap() is often quite useful, as merging both into one method is slightly more efficient.</p>
+          <p><b>map() and flatMap()</b></p>
+          <code>let arr1 = [1, 2, 3, 4];
+
+                arr1.map(x =&gt; [x * 2]);
+                // [[2], [4], [6], [8]]
+
+                arr1.flatMap(x =&gt; [x * 2]);
+                // [2, 4, 6, 8]
+
+                // only one level is flattened
+                arr1.flatMap(x =&gt; [[x * 2]]);
+                // [[2], [4], [6], [8]]
+          </code>
+          <p><b>For adding and removing items during a map()</b></p>
+          <code>// Let's say we want to remove all the negative numbers and split the odd
+                numbers into an even number and a 1
+                let a = [5, 4, -3, 20, 17, -33, -4, 18]
+                //       |\  \  x   |  | \   x   x   |
+                //      [4,1, 4,   20, 16, 1,       18]
+
+                a.flatMap( (n) =&gt;
+                  (n &lt; 0) ?      [] :
+                  (n % 2 == 0) ? [n] :
+                                 [n-1, 1]
+                )
+
+                // expected output: [4, 1, 4, 20, 16, 1, 18]
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.FOREACH()">
+        <header>Methods - array.prototype.forEach()</header>
+        <article>
+          <p>The forEach() method executes a provided function once for each array element.</p>
+          <code>var array1 = ['a', 'b', 'c'];
+
+                array1.forEach(function(element) {
+                  console.log(element);
+                });
+
+                // expected output: "a"
+                // expected output: "b"
+                // expected output: "c"
+          </code>
+          <p><b>Converting a for loop to forEach</b></p>
+          <code>const items = ['item1', 'item2', 'item3'];
+                const copy = [];
+
+                // before
+                for (let i=0; i &#60; items.length; i++) {
+                  copy.push(items[i]);
+                }
+
+                // after
+                items.forEach(function(item){
+                  copy.push(item);
+                });
+          </code>
+          <p><b>If the array is modified during iteration, other elements might be skipped.</b></p>
+          <code>var words = ['one', 'two', 'three', 'four'];
+                words.forEach(function(word) {
+                  console.log(word);
+                  if (word === 'two') {
+                    words.shift();
+                  }
+                });
+                // one
+                // two
+                // four
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.INCLUDES()">
+        <header>Methods - array.prototype.includes()</header>
+        <article>
+          <p>The includes() method determines whether an array includes a certain value among its entries, returning true or false as appropriate.</p>
+          <code>var array1 = [1, 2, 3];
+
+                console.log(array1.includes(2));
+                // expected output: true
+
+                var pets = ['cat', 'dog', 'bat'];
+
+                console.log(pets.includes('cat'));
+                // expected output: true
+
+                console.log(pets.includes('at'));
+                // expected output: false
+          </code>
+          <p><b>Examples</b></p>
+          <code>[1, 2, 3].includes(2);     // true
+                [1, 2, 3].includes(4);     // false
+                [1, 2, 3].includes(3, 3);  // false
+                [1, 2, 3].includes(3, -1); // true
+                [1, 2, NaN].includes(NaN); // true
+          </code>
+          <p><b>Computed index is less than 0</b></p>
+          <code>// array length is 3
+                // fromIndex is -100
+                // computed index is 3 + (-100) = -97
+
+                var arr = ['a', 'b', 'c'];
+
+                arr.includes('a', -100); // true
+                arr.includes('b', -100); // true
+                arr.includes('c', -100); // true
+                arr.includes('a', -2); // false
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.INDEXOF()">
+        <header>Methods - array.prototype.indexOf()</header>
+        <article>
+          <p>The indexOf() method returns the first index at which a given element can be found in the array, or -1 if it is not present.</p>
+          <code>var beasts = ['ant', 'bison', 'camel', 'duck', 'bison'];
+
+                console.log(beasts.indexOf('bison'));
+                // expected output: 1
+
+                // start from index 2
+                console.log(beasts.indexOf('bison', 2));
+                // expected output: 4
+
+                console.log(beasts.indexOf('giraffe'));
+                // expected output: -1
+          </code>
+          <p><b>Finding all the occurrences of an element</b></p>
+          <code>var indices = [];
+                var array = ['a', 'b', 'a', 'c', 'a', 'd'];
+                var element = 'a';
+                var idx = array.indexOf(element);
+                while (idx != -1) {
+                  indices.push(idx);
+                  idx = array.indexOf(element, idx + 1);
+                }
+                console.log(indices);
+                // [0, 2, 4]
+          </code>
+          <p><b>Finding if an element exists in the array or not and updating the array</b></p>
+          <code>function updateVegetablesCollection (veggies, veggie) {
+                  if (veggies.indexOf(veggie) === -1) {
+                      veggies.push(veggie);
+                      console.log('New veggies collection is : ' + veggies);
+                  } else if (veggies.indexOf(veggie) &gt; -1) {
+                      console.log(veggie + ' already exists in the veggies collection.');
+                  }
+              }
+
+              var veggies = ['potato', 'tomato', 'chillies', 'green-pepper'];
+
+              updateVegetablesCollection(veggies, 'spinach');
+              // New veggies collection is : potato,tomato,chillies,green-pepper,spinach
+              updateVegetablesCollection(veggies, 'spinach');
+              // spinach already exists in the veggies collection.
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.JOIN()">
+        <header>Methods - array.prototype.join() </header>
+        <article>
+          <p>The join() method creates and returns a new string by concatenating all of the elements in an array (or an array-like object), separated by commas or a specified separator string. If the array has only one item, then that item will be returned without using the separator.</p>
+          <code>var elements = ['Fire', 'Air', 'Water'];
+
+                console.log(elements.join());
+                // expected output: "Fire,Air,Water"
+
+                console.log(elements.join(''));
+                // expected output: "FireAirWater"
+
+                console.log(elements.join('-'));
+                // expected output: "Fire-Air-Water"
+          </code>
+          <p><b>Joining an array four different ways</b></p>
+          <code>var a = ['Wind', 'Water', 'Fire'];
+                a.join();      // 'Wind,Water,Fire'
+                a.join(', ');  // 'Wind, Water, Fire'
+                a.join(' + '); // 'Wind + Water + Fire'
+                a.join('');    // 'WindWaterFire'
+          </code>
+          <p><b>Joining an array-like object</b></p>
+          <code>function f(a, b, c) {
+                var s = Array.prototype.join.call(arguments);
+                console.log(s); // '1,a,true'
+              }
+              f(1, 'a', true);
+              //expected output: "1,a,true"
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.KEYS()">
+        <header>Methods - array.prototype.keys()</header>
+        <article>
+          <p>The keys() method returns a new Array Iterator object that contains the keys for each index in the array.</p>
+          <code>var array1 = ['a', 'b', 'c'];
+                var iterator = array1.keys();
+
+                for (let key of iterator) {
+                  console.log(key); // expected output: 0 1 2
+                }
+          </code>
+          <p><b>Key iterator doesn't ignore holes</b></p>
+          <code>var arr = ['a', , 'c'];
+                var sparseKeys = Object.keys(arr);
+                var denseKeys = [...arr.keys()];
+                console.log(sparseKeys); // ['0', '2']
+                console.log(denseKeys);  // [0, 1, 2]
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.LASTINDEXOF()">
+        <header>Methods - array.prototype.lastIndexOf()</header>
+        <article>
+          <p>The lastIndexOf() method returns the last index at which a given element can be found in the array, or -1 if it is not present. The array is searched backwards, starting at fromIndex.</p>
+          <code>var animals = ['Dodo', 'Tiger', 'Penguin', 'Dodo'];
+
+                console.log(animals.lastIndexOf('Dodo'));
+                // expected output: 3
+
+                console.log(animals.lastIndexOf('Tiger'));
+                // expected output: 1
+          </code>
+          <p><b>Using lastIndexOf</b></p>
+          <code>var numbers = [2, 5, 9, 2];
+                numbers.lastIndexOf(2);     // 3
+                numbers.lastIndexOf(7);     // -1
+                numbers.lastIndexOf(2, 3);  // 3
+                numbers.lastIndexOf(2, 2);  // 0
+                numbers.lastIndexOf(2, -2); // 0
+                numbers.lastIndexOf(2, -1); // 3
+          </code>
+          <p><b>Finding all the occurrences of an element</b></p>
+          <code>var indices = [];
+                var array = ['a', 'b', 'a', 'c', 'a', 'd'];
+                var element = 'a';
+                var idx = array.lastIndexOf(element);
+                while (idx != -1) {
+                  indices.push(idx);
+                  idx = (idx &gt; 0 ? array.lastIndexOf(element, idx - 1) : -1);
+                }
+
+                console.log(indices);
+                // [4, 2, 0]
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.MAP()">
+        <header>Methods - array.prototype.map()</header>
+        <article>
+          <p>The map() method creates a new array with the results of calling a provided function on every element in the calling array.</p>
+          <code>var array1 = [1, 4, 9, 16];
+
+                // pass a function to map
+                const map1 = array1.map(x =&gt; x * 2);
+
+                console.log(map1);
+                // expected output: Array [2, 8, 18, 32]
+          </code>
+          <p><b>Mapping an array of numbers using a function containing an argument</b></p>
+          <code>var numbers = [1, 4, 9];
+                var doubles = numbers.map(function(num) {
+                  return num * 2;
+                });
+
+                // doubles is now [2, 8, 18]
+                // numbers is still [1, 4, 9]
+          </code>
+          <p><b>Using map to reformat objects in an array</b></p>
+          <code>var kvArray = [{key: 1, value: 10},
+                 {key: 2, value: 20},
+                 {key: 3, value: 30}];
+
+                  var reformattedArray = kvArray.map(obj =&gt;{
+                     var rObj = {};
+                     rObj[obj.key] = obj.value;
+                     return rObj;
+                  });
+                  // reformattedArray is now [{1: 10}, {2: 20}, {3: 30}],
+
+                  // kvArray is still:
+                  // [{key: 1, value: 10},
+                  //  {key: 2, value: 20},
+                  //  {key: 3, value: 30}]
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.POP()">
+        <header>Methods - array.prototype.pop()</header>
+        <article>
+          <p>The pop() method removes the last element from an array and returns that element. This method changes the length of the array.</p>
+          <code>var plants = ['broccoli', 'cauliflower', 'cabbage', 'kale', 'tomato'];
+
+                console.log(plants.pop());
+                // expected output: "tomato"
+
+                console.log(plants);
+                // expected output: Array ["broccoli", "cauliflower", "cabbage", "kale"]
+
+                plants.pop();
+
+                console.log(plants);
+                // expected output: Array ["broccoli", "cauliflower", "cabbage"]
+          </code>
+          <p><b>Removing the last element of an array</b></p>
+          <code>var myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];
+
+                var popped = myFish.pop();
+
+                console.log(myFish); // ['angel', 'clown', 'mandarin' ]
+
+                console.log(popped); // 'sturgeon'
+          </code>
+          <p><b>Using apply( ) or call ( ) on array-like objects</b></p>
+          <code>var myFish = {0:'angel', 1:'clown', 2:'mandarin', 3:'sturgeon', length: 4};
+
+                var popped = Array.prototype.pop.call(myFish); //same syntax for using apply( )
+
+                console.log(myFish); // {0:'angel', 1:'clown', 2:'mandarin', length: 3}
+
+                console.log(popped); // 'sturgeon'
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.PUSH()">
+        <header>Methods - array.prototype.push()</header>
+        <article>
+          <p>The push() method adds one or more elements to the end of an array and returns the new length of the array.</p>
+          <code>var animals = ['pigs', 'goats', 'sheep'];
+
+                console.log(animals.push('cows'));
+                // expected output: 4
+
+                console.log(animals);
+                // expected output: Array ["pigs", "goats", "sheep", "cows"]
+
+                animals.push('chickens');
+
+                console.log(animals);
+                // expected output: Array ["pigs", "goats", "sheep", "cows", "chickens"]
+          </code>
+          <p><b>Adding elements to an array</b></p>
+          <code>var sports = ['soccer', 'baseball'];
+                var total = sports.push('football', 'swimming');
+
+                console.log(sports); // ['soccer', 'baseball', 'football', 'swimming']
+                console.log(total);  // 4
+          </code>
+          <p><b>Merging two arrays</b></p>
+          <code>var vegetables = ['parsnip', 'potato'];
+                var moreVegs = ['celery', 'beetroot'];
+
+                // Merge the second array into the first one
+                // Equivalent to vegetables.push('celery', 'beetroot');
+                Array.prototype.push.apply(vegetables, moreVegs);
+
+                console.log(vegetables); // ['parsnip', 'potato', 'celery', 'beetroot']
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.REDUCE()">
+        <header>Methods - array.prototype.reduce()</header>
+        <article>
+          <p>The reduce() method executes a reducer function (that you provide) on each element of the array, resulting in a single output value.</p>
+          <code>const array1 = [1, 2, 3, 4];
+                const reducer = (accumulator, currentValue) =&gt; accumulator + currentValue;
+
+                // 1 + 2 + 3 + 4
+                console.log(array1.reduce(reducer));
+                // expected output: 10
+
+                // 5 + 1 + 2 + 3 + 4
+                console.log(array1.reduce(reducer, 5));
+                // expected output: 15
+          </code>
+          <p><b>Remove duplicate items in array</b></p>
+          <code>var myArray = ['a', 'b', 'a', 'b', 'c', 'e', 'e', 'c', 'd', 'd', 'd', 'd'];
+                var myOrderedArray = myArray.reduce(function (accumulator, currentValue) {
+                  if (accumulator.indexOf(currentValue) === -1) {
+                    accumulator.push(currentValue);
+                  }
+                  return accumulator
+                }, [])
+
+                console.log(myOrderedArray);
+          </code>
+          <p><b>Sum of values in an object array</b></p>
+          <code>var initialValue = 0;
+                var sum = [{x: 1}, {x: 2}, {x: 3}].reduce(function (accumulator, currentValue) {
+                    return accumulator + currentValue.x;
+                },initialValue)
+
+                console.log(sum) // logs 6
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.REDUCERIGHT()">
+        <header>Methods - array.prototype.reduceRight()</header>
+        <article>
+          <p>The reduceRight() method applies a function against an accumulator and each value of the array (from right-to-left) to reduce it to a single value.</p>
+          <code>const array1 = [[0, 1], [2, 3], [4, 5]].reduceRight(
+                (accumulator, currentValue) =&gt; accumulator.concat(currentValue)
+              );
+
+              console.log(array1);
+              // expected output: Array [4, 5, 2, 3, 0, 1]
+          </code>
+          <p><b>Sum up all values within an array</b></p>
+          <code>var sum = [0, 1, 2, 3].reduceRight(function(a, b) {
+                return a + b;
+              });
+              // sum is 6
+          </code>
+          <p><b>Difference between reduce and reduceRight</b></p>
+          <code>var a = ['1', '2', '3', '4', '5'];
+                var left  = a.reduce(function(prev, cur)      { return prev + cur; });
+                var right = a.reduceRight(function(prev, cur) { return prev + cur; });
+
+                console.log(left);  // "12345"
+                console.log(right); // "54321"
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.REVERSE()">
+        <header>Methods - array.prototype.reverse()</header>
+        <article>
+          <p>The reverse() method reverses an array in place. The first array element becomes the last, and the last array element becomes the first.</p>
+          <code>var array1 = ['one', 'two', 'three'];
+                console.log('array1: ', array1);
+                // expected output: Array ['one', 'two', 'three']
+
+                var reversed = array1.reverse();
+                console.log('reversed: ', reversed);
+                // expected output: Array ['three', 'two', 'one']
+
+                /* Careful: reverse is destructive. It also changes
+                the original array */
+                console.log('array1: ', array1);
+                // expected output: Array ['three', 'two', 'one']
+          </code>
+          <p><b>Reversing the elements in an array</b></p>
+          <code>const a = [1, 2, 3];
+
+                console.log(a); // [1, 2, 3]
+
+                a.reverse();
+
+                console.log(a); // [3, 2, 1]
+          </code>
+          <p><b>Reversing the elements in an array-like object</b></p>
+          <code>const a = {0: 1, 1: 2, 2: 3, length: 3};
+
+                console.log(a); // {0: 1, 1: 2, 2: 3, length: 3}
+
+                Array.prototype.reverse.call(a); //same syntax for using apply()
+
+                console.log(a); // {0: 3, 1: 2, 2: 1, length: 3}
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.SHIFT()">
+        <header>Methods - array.prototype.shift()</header>
+        <article>
+          <p>The shift() method removes the first element from an array and returns that removed element. This method changes the length of the array.</p>
+          <code>var array1 = [1, 2, 3];
+
+                var firstElement = array1.shift();
+
+                console.log(array1);
+                // expected output: Array [2, 3]
+
+                console.log(firstElement);
+                // expected output: 1
+          </code>
+          <p><b>Removing an element from an array</b></p>
+          <code>var myFish = ['angel', 'clown', 'mandarin', 'surgeon'];
+
+                console.log('myFish before:', JSON.stringify(myFish));
+                // myFish before: ['angel', 'clown', 'mandarin', 'surgeon']
+
+                var shifted = myFish.shift();
+
+                console.log('myFish after:', myFish);
+                // myFish after: ['clown', 'mandarin', 'surgeon']
+
+                console.log('Removed this element:', shifted);
+                // Removed this element: angel
+          </code>
+          <p><b>Using shift() method in while loop</b></p>
+          <code>var names = ["Andrew", "Edward", "Paul", "Chris" ,"John"];
+
+                while( (i = names.shift()) !== undefined ) {
+                    console.log(i);
+                }
+                // Andrew, Edward, Paul, Chris, John
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.SLICE()">
+        <header>Methods - array.prototype.slice()</header>
+        <article>
+          <p>The slice() method returns a shallow copy of a portion of an array into a new array object selected from begin to end (end not included). The original array will not be modified.</p>
+          <code>var animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+
+                console.log(animals.slice(2));
+                // expected output: Array ["camel", "duck", "elephant"]
+
+                console.log(animals.slice(2, 4));
+                // expected output: Array ["camel", "duck"]
+
+                console.log(animals.slice(1, 5));
+                // expected output: Array ["bison", "camel", "duck", "elephant"]
+          </code>
+          <p><b>Return a portion of an existing array</b></p>
+          <code>var fruits = ['Banana', 'Orange', 'Lemon', 'Apple', 'Mango'];
+                var citrus = fruits.slice(1, 3);
+
+                // fruits contains ['Banana', 'Orange', 'Lemon', 'Apple', 'Mango']
+                // citrus contains ['Orange','Lemon']
+          </code>
+          <p><b>Using slice</b></p>
+          <p>In the following example, slice creates a new array, newCar, from myCar. Both include a reference to the object myHonda. When the color of myHonda is changed to purple, both arrays reflect the change.</p>
+          <code>// Using slice, create newCar from myCar.
+                var myHonda = { color: 'red', wheels: 4, engine: { cylinders: 4, size: 2.2 } };
+                var myCar = [myHonda, 2, 'cherry condition', 'purchased 1997'];
+                var newCar = myCar.slice(0, 2);
+
+                // Display the values of myCar, newCar, and the color of myHonda
+                //  referenced from both arrays.
+                console.log('myCar = ' + JSON.stringify(myCar));
+                console.log('newCar = ' + JSON.stringify(newCar));
+                console.log('myCar[0].color = ' + myCar[0].color);
+                console.log('newCar[0].color = ' + newCar[0].color);
+
+                // Change the color of myHonda.
+                myHonda.color = 'purple';
+                console.log('The new color of my Honda is ' + myHonda.color);
+
+                // Display the color of myHonda referenced from both arrays.
+                console.log('myCar[0].color = ' + myCar[0].color);
+                console.log('newCar[0].color = ' + newCar[0].color);
+          </code>
+          <p>This script writes:</p>
+          <code>myCar = [{color: 'red', wheels: 4, engine: {cylinders: 4, size: 2.2}}, 2,
+           'cherry condition', 'purchased 1997']
+            newCar = [{color: 'red', wheels: 4, engine: {cylinders: 4, size: 2.2}}, 2]
+            myCar[0].color = red
+            newCar[0].color = red
+            The new color of my Honda is purple
+            myCar[0].color = purple
+            newCar[0].color = purple
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.SOME()">
+        <header>Methods - array.prototype.some()</header>
+        <article>
+          <p>The some() method tests whether at least one element in the array passes the test implemented by the provided function. It returns a Boolean value. </p>
+          <code>var array = [1, 2, 3, 4, 5];
+
+                var even = function(element) {
+                  // checks whether an element is even
+                  return element % 2 === 0;
+                };
+
+                console.log(array.some(even));
+                // expected output: true
+          </code>
+          <p><b>Checking whether a value exists in an array</b></p>
+          <code>var fruits = ['apple', 'banana', 'mango', 'guava'];
+
+                function checkAvailability(arr, val) {
+                  return arr.some(function(arrVal) {
+                    return val === arrVal;
+                  });
+                }
+
+                checkAvailability(fruits, 'kela');   // false
+                checkAvailability(fruits, 'banana'); // true
+          </code>
+          <p><b>Checking whether a value exists using an arrow function</b></p>
+          <code>var fruits = ['apple', 'banana', 'mango', 'guava'];
+
+                function checkAvailability(arr, val) {
+                  return arr.some(arrVal =&gt; val === arrVal);
+                }
+
+                checkAvailability(fruits, 'kela');   // false
+                checkAvailability(fruits, 'banana'); // true
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.SORT()">
+        <header>Methods - array.prototype.sort()</header>
+        <article>
+          <p>The sort() method sorts the elements of an array in place and returns the sorted array. The default sort order is built upon converting the elements into strings, then comparing their sequences of UTF-16 code units values. The time and space complexity of the sort cannot be guaranteed as it depends on the implementation.</p>
+          <code>var months = ['March', 'Jan', 'Feb', 'Dec'];
+                months.sort();
+                console.log(months);
+                // expected output: Array ["Dec", "Feb", "Jan", "March"]
+
+                var array1 = [1, 30, 4, 21, 100000];
+                array1.sort();
+                console.log(array1);
+                // expected output: Array [1, 100000, 21, 30, 4]
+          </code>
+          <p><b>Sorting non-ASCII characters</b></p>
+          <code>var items = ['réservé', 'premier', 'cliché', 'communiqué', 'café', 'adieu'];
+                items.sort(function (a, b) {
+                  return a.localeCompare(b);
+                });
+
+                // items is ['adieu', 'café', 'cliché', 'communiqué', 'premier', 'réservé']
+          </code>
+          <p><b>Sorting with map</b></p>
+          <code>// the array to be sorted
+                var list = ['Delta', 'alpha', 'CHARLIE', 'bravo'];
+
+                // temporary array holds objects with position and sort-value
+                var mapped = list.map(function(el, i) {
+                  return { index: i, value: el.toLowerCase() };
+                })
+
+                // sorting the mapped array containing the reduced values
+                mapped.sort(function(a, b) {
+                  if (a.value &gt; b.value) {
+                    return 1;
+                  }
+                  if (a.value &#60; b.value) {
+                    return -1;
+                  }
+                  return 0;
+                });
+
+                // container for the resulting order
+                var result = mapped.map(function(el){
+                  return list[el.index];
+                });
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.SPLICE()">
+        <header>Methods - array.prototype.splice()</header>
+        <article>
+          <p>The splice() method changes the contents of an array by removing or replacing existing elements and/or adding new elements in place.</p>
+          <code>var months = ['Jan', 'March', 'April', 'June'];
+                months.splice(1, 0, 'Feb');
+                // inserts at index 1
+                console.log(months);
+                // expected output: Array ['Jan', 'Feb', 'March', 'April', 'June']
+
+                months.splice(4, 1, 'May');
+                // replaces 1 element at index 4
+                console.log(months);
+                // expected output: Array ['Jan', 'Feb', 'March', 'April', 'May']
+          </code>
+          <p><b>Remove 0 (zero) elements from index 2, and insert "drum" and "guitar"</b></p>
+          <code>var myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];
+                var removed = myFish.splice(2, 0, 'drum', 'guitar');
+
+                // myFish is ["angel", "clown", "drum", "guitar", "mandarin", "sturgeon"]
+                // removed is [], no elements removed
+          </code>
+          <p><b>Remove 2 elements from index 0, and insert "parrot", "anemone" and "blue"</b></p>
+          <code>var myFish = ['angel', 'clown', 'trumpet', 'sturgeon'];
+                var removed = myFish.splice(0, 2, 'parrot', 'anemone', 'blue');
+
+                // myFish is ["parrot", "anemone", "blue", "trumpet", "sturgeon"]
+                // removed is ["angel", "clown"]
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.TOLOCALESTRING()">
+        <header>Methods - array.prototype.toLocaleString()</header>
+        <article>
+          <p>The toLocaleString() method returns a string representing the elements of the array. The elements are converted to Strings using their toLocaleString methods and these Strings are separated by a locale-specific String (such as a comma “,”).</p>
+          <code>var array1 = [1, 'a', new Date('21 Dec 1997 14:12:00 UTC')];
+                var localeString = array1.toLocaleString('en', {timeZone: "UTC"});
+
+                console.log(localeString);
+                // expected output: "1,a,12/21/1997, 2:12:00 PM",
+                // This assumes "en" locale and UTC timezone - your results may vary
+          </code>
+          <p><b>Using locales and options</b></p>
+          <code>var prices = ['￥7', 500, 8123, 12];
+                prices.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' });
+
+                // "￥7,￥500,￥8,123,￥12"
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.TOSOURCE()">
+        <header>Methods - array.prototype.toSource()</header>
+        <article>
+          <p>This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future. The toSource() method returns a string representing the source code of the array.</p>
+          <p><b>Examining the source code of an array</b></p>
+          <code>var alpha = new Array('a', 'b', 'c');
+
+                alpha.toSource();
+                //returns ['a', 'b', 'c']
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.TOSTRING()">
+        <header>Methods - array.prototype.toString()</header>
+        <article>
+          <p>The toString() method returns a string representing the specified array and its elements.</p>
+          <code>var array1 = [1, 2, 'a', '1a'];
+
+                console.log(array1.toString());
+                // expected output: "1,2,a,1a"
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.UNSHIFT()">
+        <header>Methods - array.prototype.unshift()</header>
+        <article>
+          <p>The unshift() method adds one or more elements to the beginning of an array and returns the new length of the array.</p>
+          <code>var array1 = [1, 2, 3];
+
+                console.log(array1.unshift(4, 5));
+                // expected output: 5
+
+                console.log(array1);
+                // expected output: Array [4, 5, 1, 2, 3]
+          </code>
+          <p><b>Examples</b></p>
+          <code>let arr = [1, 2];
+
+                arr.unshift(0); // result of the call is 3, which is the new array length
+                // arr is [0, 1, 2]
+
+                arr.unshift(-2, -1); // the new array length is 5
+                // arr is [-2, -1, 0, 1, 2]
+
+                arr.unshift([-4, -3]); // the new array length is 6
+                // arr is [[-4, -3], -2, -1, 0, 1, 2]
+
+                arr.unshift([-7, -6], [-5]); // the new array length is 8
+                // arr is [ [-7, -6], [-5], [-4, -3], -2, -1, 0, 1, 2 ]
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE.VALUES()">
+        <header>Methods - array.prototype.values()</header>
+        <article>
+          <p>The values() method returns a new Array Iterator object that contains the values for each index in the array.</p>
+          <code>const array1 = ['a', 'b', 'c'];
+                const iterator = array1.values();
+
+                for (const value of iterator) {
+                  console.log(value); // expected output: "a" "b" "c"
+                }
+          </code>
+          <p><b>Iteration using for...of loop</b></p>
+          <code>var arr = ['a', 'b', 'c', 'd', 'e'];
+                var iterator = arr.values();
+
+                for (let letter of iterator) {
+                  console.log(letter);
+                }
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE[@@ITERATOR]()">
+        <header>Methods - array.prototype[@@iterator]()</header>
+        <article>
+          <p>The initial value of the @@iterator property is the same function object as the initial value of the values() property.</p>
+          <p><b>Iteration using for...of loop</b></p>
+          <code>var arr = ['a', 'b', 'c', 'd', 'e'];
+                var eArr = arr[Symbol.iterator]();
+                // your browser must support for..of loop
+                // and let-scoped variables in for loops
+                // const and var could also be used
+                for (let letter of eArr) {
+                  console.log(letter);
+                }
+          </code>
+          <p><b>Alternative iteration</b></p>
+          <code>var arr = ['a', 'b', 'c', 'd', 'e'];
+                var eArr = arr[Symbol.iterator]();
+                console.log(eArr.next().value); // a
+                console.log(eArr.next().value); // b
+                console.log(eArr.next().value); // c
+                console.log(eArr.next().value); // d
+                console.log(eArr.next().value); // e
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="METHODS_-_ARRAY.PROTOTYPE[@@SPECIES]">
+        <header>Methods - array.prototype[@@species]</header>
+        <article>
+          <p>The Array[@@species] accessor property returns the Array constructor.</p>
+          <p><b>Examples</b></p>
+          <code>Array[Symbol.species]; // function Array()</code>
+          <code>class MyArray extends Array {
+                // Overwrite MyArray species to the parent Array constructor
+                static get [Symbol.species]() { return Array; }
+                }
+          </code>
+        </article>
+      </section>
+
+      <section class="main-section" id="Reference">
+        <header>Reference</header>
+        <article>
+          <p>All the documentation in this page is taken from:</p>
+          <ul>
+            <li><a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript target="_blank">MDN</a></li>
+            <li><a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array target="_blank">Array</a></li>
+            <li><a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Syntax target="_blank">Array - Syntax</a></li>
+            <li><a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Description target="_blank">Array - Description</a></li>
+            <li><a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Properties target="_blank">Array - Properties</a></li>
+            <li><a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Methods target="_blank">Array - Methods</a></li>
+          </ul>
+        </article>
+      </section>
+
+    </main>
+  </body>
+</html>
